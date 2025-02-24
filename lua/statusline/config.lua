@@ -6,7 +6,7 @@ local default = {
 }
 
 function M.setup(opt)
-  default = vim.tbl_deep_extend('force', default, opt)
+  default = vim.tbl_deep_extend('force', default, opt or {})
 end
 
 function M.get()

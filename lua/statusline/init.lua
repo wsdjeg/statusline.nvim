@@ -704,22 +704,8 @@ function M.get(...)
 end
 
 function M.def_colors()
-  local name = vim.g.colors_name or 'gruvbox'
+  local t = colors_template
 
-  local t
-
-  if #vim.g.spacevim_custom_color_palette > 0 then
-    t = vim.g.spacevim_custom_color_palette
-  else
-    local ok = pcall(function()
-      t = vim.fn['SpaceVim#mapping#guide#theme#' .. name .. '#palette']()
-    end)
-
-    if not ok then
-      t = vim.fn['SpaceVim#mapping#guide#theme#gruvbox#palette']()
-    end
-  end
-  colors_template = t
   vim.api.nvim_set_hl(0, 'SpaceVim_statusline_a', {
     fg = t[1][1],
     bg = t[1][2],
@@ -1264,7 +1250,10 @@ end
 function M.health()
   return true
 end
-function M.setup()
+function M.setup(opt)
+  require('statusline.config').setup(opt)
+  M.def_colors()
+  vim.opt_local.statusline = M.get(1)
   local group = vim.api.nvim_create_augroup('spacevim_statusline', { clear = true })
   vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter', 'FileType', 'BufWritePost' }, {
     group = group,
