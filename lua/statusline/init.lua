@@ -113,17 +113,17 @@ local major_mode_cache = true
 local function winnr(...)
   if select(1, ...) then
     if config.index_type == 3 then
-      return ' %{ get(w:, "winid", winnr()) } '
+      return ' %{ winnr() } '
     else
-      return ' %{ v:lua.require("statusline").winnr(get(w:, "winid", winnr())) } '
+      return ' %{ v:lua.require("statusline").winnr(winnr()) } '
     end
   else
     if config.enable_mode then
-      return '%{v:lua.require("statusline").mode(mode())} %{ v:lua.require("statusline").winnr(get(w:, "winid", winnr())) } %{v:lua.require("statusline").mode_text(mode())} '
+      return '%{v:lua.require("statusline").mode(mode())} %{ v:lua.require("statusline").winnr(winnr()) } %{v:lua.require("statusline").mode_text(mode())} '
     elseif config.index_type == 3 then
-      return '%{v:lua.require("statusline").mode(mode())} %{ get(w:, "winid", winnr()) } '
+      return '%{v:lua.require("statusline").mode(mode())} %{ winnr() } '
     else
-      return '%{v:lua.require("statusline").mode(mode())} %{ v:lua.require("statusline").winnr(get(w:, "winid", winnr())) } '
+      return '%{v:lua.require("statusline").mode(mode())} %{ v:lua.require("statusline").winnr(winnr()) } '
     end
   end
 end
