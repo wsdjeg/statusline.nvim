@@ -395,13 +395,13 @@ local function active()
   for _, section in ipairs(config.left_sections) do
     if registed_sections[section] then
       local rst = ''
-      local ok, _ = pcall(function()
+      --local ok, _ = pcall(function()
         if type(registed_sections[section]) == 'function' then
           rst = registed_sections[section]()
         elseif type(registed_sections[section]) == 'string' then
           rst = vim.fn[registed_sections[section]]()
         end
-      end)
+      -- end)
       if not ok then
       end
       table.insert(lsec, rst)
@@ -886,14 +886,6 @@ function M.ctrlp_status(str)
   )
 end
 function M.config()
-  if separators[vim.g.spacevim_statusline_separator] then
-    lsep = separators[vim.g.spacevim_statusline_separator][1]
-    rsep = separators[vim.g.spacevim_statusline_separator][2]
-  end
-  if i_separators[vim.g.spacevim_statusline_iseparator] then
-    ilsep = i_separators[vim.g.spacevim_statusline_iseparator][1]
-    irsep = i_separators[vim.g.spacevim_statusline_iseparator][2]
-  end
   vim.fn['SpaceVim#mapping#space#def'](
     'nnoremap',
     { 't', 'm', 'm' },
@@ -950,28 +942,6 @@ function M.config()
     'toggle the statusline itself',
     1
   )
-  local function TagbarStatusline(_, _, fname, _)
-    local name = ''
-    if vim.fn.strwidth(fname) > vim.g.spacevim_sidebar_width - 15 then
-      name = string.sub(fname, vim.g.spacevim_sidebar_width - 20) .. '..'
-    else
-      name = fname
-    end
-    return util.build(
-      { winnr(1), ' Tagbar ', ' ' .. name .. ' ' },
-      {},
-      lsep,
-      rsep,
-      '',
-      '',
-      'SpaceVim_statusline_ia',
-      'SpaceVim_statusline_b',
-      'SpaceVim_statusline_c',
-      'SpaceVim_statusline_z',
-      vim.g.spacevim_sidebar_width
-    )
-  end
-  vim.g.tagbar_status_func = TagbarStatusline
   vim.g.unite_force_overwrite_statusline = 0
   vim.g.ctrlp_status_func = {
     main = 'SpaceVim#layers#core#statusline#ctrlp',
@@ -1229,6 +1199,9 @@ function M.register_sections(name, func)
   end
   registed_sections[name] = func
 end
+function M.get_sections()
+  return registed_sections
+end
 
 function M.remove_section(name)
   local left = {}
@@ -1252,6 +1225,11 @@ function M.health()
 end
 function M.setup(opt)
   require('statusline.config').setup(opt)
+  config = require('statusline.config').get()
+    lsep = separators[config.separator][1]
+    rsep = separators[config.separator][2]
+    ilsep = i_separators[config.iseparator][1]
+    irsep = i_separators[config.iseparator][2]
   M.def_colors()
   vim.opt_local.statusline = M.get(1)
   local group = vim.api.nvim_create_augroup('spacevim_statusline', { clear = true })
@@ -1276,6 +1254,28 @@ function M.setup(opt)
       M.def_colors()
     end,
   })
+  local function TagbarStatusline(_, _, fname, _)
+    local name = ''
+    if vim.fn.strwidth(fname) > 15 then
+      name = string.sub(fname, 10) .. '..'
+    else
+      name = fname
+    end
+    return util.build(
+      { winnr(1), ' Tagbar ', ' ' .. name .. ' ' },
+      {},
+      lsep,
+      rsep,
+      '',
+      '',
+      'SpaceVim_statusline_ia',
+      'SpaceVim_statusline_b',
+      'SpaceVim_statusline_c',
+      'SpaceVim_statusline_z',
+      30
+    )
+  end
+  vim.g.tagbar_status_func = TagbarStatusline
 end
 
 function M.rsep()

@@ -4,7 +4,9 @@ local default = {
   left_sections = { 'winnr', 'filename' },
   right_sections = { 'fileformat', 'cursorpos' },
   enable_mode = true,
-  index_type = 3
+  index_type = 3,
+  separator = 'arrow',
+  iseparator = 'arrow',
 }
 
 function M.setup(opt)
