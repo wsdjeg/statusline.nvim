@@ -396,11 +396,11 @@ local function active()
     if registed_sections[section] then
       local rst = ''
       --local ok, _ = pcall(function()
-        if type(registed_sections[section]) == 'function' then
-          rst = registed_sections[section]()
-        elseif type(registed_sections[section]) == 'string' then
-          rst = vim.fn[registed_sections[section]]()
-        end
+      if type(registed_sections[section]) == 'function' then
+        rst = registed_sections[section]()
+      elseif type(registed_sections[section]) == 'string' then
+        rst = vim.fn[registed_sections[section]]()
+      end
       -- end)
       if not ok then
       end
@@ -676,6 +676,9 @@ local special_statusline = {
   end,
   SpaceVimRunner = function()
     return simple_name('Runner') .. ' %{SpaceVim#plugins#runner#status()}'
+  end,
+  ['nvim-code-runner'] = function()
+    return simple_name('Runner') .. ' %{ v:lua.require("code-runner").status() }'
   end,
   SpaceVimREPL = function()
     return simple_name('REPL') .. ' %{SpaceVim#plugins#repl#status()}'
@@ -1226,10 +1229,10 @@ end
 function M.setup(opt)
   require('statusline.config').setup(opt)
   config = require('statusline.config').get()
-    lsep = separators[config.separator][1]
-    rsep = separators[config.separator][2]
-    ilsep = i_separators[config.iseparator][1]
-    irsep = i_separators[config.iseparator][2]
+  lsep = separators[config.separator][1]
+  rsep = separators[config.separator][2]
+  ilsep = i_separators[config.iseparator][1]
+  irsep = i_separators[config.iseparator][2]
   M.def_colors()
   vim.opt_local.statusline = M.get(1)
   local group = vim.api.nvim_create_augroup('spacevim_statusline', { clear = true })
