@@ -634,6 +634,9 @@ local special_statusline = {
   SpaceVimTodoManager = function()
     return simple_name('TODO manager')
   end,
+  ['todo-nvim'] = function()
+    return simple_name('TODO manager')
+  end,
   SpaceVimTasksInfo = function()
     return simple_name('Tasks manager')
   end,
