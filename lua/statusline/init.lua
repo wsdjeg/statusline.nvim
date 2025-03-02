@@ -450,7 +450,7 @@ local function inactive()
     .. '%#SpaceVim_statusline_ia_SpaceVim_statusline_b#'
     .. lsep
     .. '%#SpaceVim_statusline_b#'
-  local secs = { filename(), ' ' .. vim.o.filetype, get_modes() }
+  local secs = { filename(), ' ' .. vim.o.filetype }
   local base = 10
   for _, sec in ipairs(secs) do
     local len = util.len(sec)
@@ -463,15 +463,6 @@ local function inactive()
       .. ' '
       .. ilsep
       .. '")}'
-  end
-  if (vim.w.winwidth or 150) > base + 10 then
-    l = l
-      .. table.concat({
-        '%=',
-        '%{" " . get(g:, "_spacevim_statusline_fileformat", "") . " "}',
-        '%{" " . (&fenc!=""?&fenc:&enc) . " "}',
-        ' %P ',
-      }, irsep)
   end
   return l
 end
