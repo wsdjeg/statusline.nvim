@@ -677,6 +677,9 @@ local special_statusline = {
   SpaceVimREPL = function()
     return simple_name('REPL') .. ' %{SpaceVim#plugins#repl#status()}'
   end,
+  ['repl-nvim'] = function()
+    return simple_name('Runner') .. ' %{ v:lua.require("repl").status() }'
+  end,
   VimMailClient = function() end, -- todo
   SpaceVimQuickFix = function()
     return simple_name('SpaceVimQuickFix')
