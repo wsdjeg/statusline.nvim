@@ -505,6 +505,9 @@ local special_statusline = {
   defx = function()
     return simple_name('defx')
   end,
+  aerial = function()
+    return simple_name('aerial')
+  end,
   ['git-status'] = function()
     return simple_name('Git status')
   end,
