@@ -508,6 +508,9 @@ local special_statusline = {
   aerial = function()
     return simple_name('aerial')
   end,
+  Outline = function()
+    return simple_name('Outline')
+  end,
   ['git-status'] = function()
     return simple_name('Git status')
   end,
