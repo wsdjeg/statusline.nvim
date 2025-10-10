@@ -665,6 +665,9 @@ local special_statusline = {
   SpaceVimLog = function()
     return simple_name('SpaceVim Runtime Log')
   end,
+  RuntimeLog = function()
+    return simple_name('Runtime Log')
+  end,
   SpaceVimTomlViewer = function()
     return simple_name('Toml Json Viewer')
   end,
