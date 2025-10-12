@@ -157,8 +157,9 @@ function M.len(sec)
   if not sec then return 0 end
   local str = vim.fn.matchstr(sec, '%{.*}')
   if vim.fn.empty(str) == 0 then
-    local pos = vim.fn.match(str, '}')
-    return vim.fn.len(sec) - vim.fn.len(str) + vim.fn.len(vim.fn.eval(string.sub(str, 3, pos))) + 4
+    -- local pos = vim.fn.match(str, '}')
+    -- return vim.fn.len(sec) - vim.fn.len(str) + vim.fn.len(vim.fn.eval(string.sub(str, 3, pos))) + 4
+    return #vim.api.nvim_eval_statusline(sec, {})
   else
     return vim.fn.len(sec) + 4
   end
