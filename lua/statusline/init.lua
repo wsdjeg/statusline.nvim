@@ -539,6 +539,13 @@ local special_statusline = {
   ['neo-tree'] = function()
     return simple_name('NeoTree')
   end,
+  atone = function()
+    if vim.o.syntax == 'diff' then
+      return simple_name('Atone Diff')
+    else
+      return simple_name('Atone tree')
+    end
+  end,
   Fuzzy = function() end, -- todo
   ['git-commit'] = function()
     return simple_name('Git commit')
