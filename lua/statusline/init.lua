@@ -294,9 +294,11 @@ local function fileformat()
   else
     vim.g._spacevim_statusline_fileformat = vim.o.ff
   end
-  return '%{ " " . g:_spacevim_statusline_fileformat . " '
-    .. irsep
-    .. ' " . (&fenc!=""?&fenc:&enc) . " "}'
+  return '%{ " " . g:_spacevim_statusline_fileformat . " "}'
+end
+
+local function fileencoding()
+  return '%{" " . (&fenc != "" ? &fenc : &enc) . " "}'
 end
 
 local function get_alias(ft)
@@ -354,6 +356,7 @@ local registed_sections = {
   ['syntax checking'] = syntax_checking,
   filename = filename,
   fileformat = fileformat,
+  fileencoding = fileencoding,
   ['major mode'] = major_mode,
   ['minor mode lighters'] = get_modes,
   cursorpos = cursorpos,
