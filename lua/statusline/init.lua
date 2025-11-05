@@ -737,6 +737,7 @@ function M.def_colors()
     ctermbg = t[1][3],
   })
   vim.api.nvim_set_hl(0, 'SpaceVim_statusline_ia', {
+    bold = true,
     fg = t[1][1],
     bg = t[1][2],
     ctermfg = t[1][4],
