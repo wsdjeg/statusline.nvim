@@ -169,8 +169,8 @@ local function input_method()
 end
 
 local function syntax_checking()
-  if vim.fn['SpaceVim#lsp#buf_server_ready']() then
-    local counts = require('spacevim.lsp').lsp_diagnostic_count()
+  if #vim.diagnostic.count(0) > 0 then
+    local counts = vim.diagnostic.count(0)
     local errors = counts[1] or 0
     local warnings = counts[2] or 0
     local infos = counts[3] or 0
