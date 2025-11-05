@@ -285,16 +285,24 @@ local function filename()
 end
 
 local function get_filetype_icon()
-  return vim.o.fileformat
+  if vim.o.fileformat == 'dos' then
+    return ''
+  elseif vim.o.fileformat == 'unix' then
+    return ''
+  elseif vim.o.fileformat == 'mac' then
+    return ''
+  else
+    return vim.o.fileformat
+  end
 end
 
 local function fileformat()
-  if vim.g.spacevim_statusline_unicode == 1 then
-    vim.g._spacevim_statusline_fileformat = get_filetype_icon()
+  if config.enable_unicode then
+    vim.g._statusline_fileformat = get_filetype_icon()
   else
-    vim.g._spacevim_statusline_fileformat = vim.o.ff
+    vim.g._statusline_fileformat = vim.o.fileformat
   end
-  return '%{ " " . g:_spacevim_statusline_fileformat . " "}'
+  return '%{ " " . g:_statusline_fileformat . " "}'
 end
 
 local function fileencoding()
