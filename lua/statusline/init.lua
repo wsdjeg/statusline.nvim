@@ -456,26 +456,16 @@ local function active()
 end
 
 local function inactive()
-  local l = '%#SpaceVim_statusline_ia#'
+  return '%#SpaceVim_statusline_ia#'
     .. winnr(1)
     .. '%#SpaceVim_statusline_ia_SpaceVim_statusline_b#'
     .. lsep
     .. '%#SpaceVim_statusline_b#'
-  local secs = { filename(), ' ' .. vim.o.filetype }
-  local base = 10
-  for _, sec in ipairs(secs) do
-    local len = util.len(sec)
-    base = base + len
-    l = l
-      .. '%{ get(w:, "winwidth", 150) < '
-      .. base
-      .. ' ? "" : (" '
-      .. util.eval(sec)
-      .. ' '
-      .. ilsep
-      .. '")}'
-  end
-  return l
+    .. filename()
+    .. '%#SpaceVim_statusline_b_SpaceVim_statusline_z#'
+    .. lsep
+    .. '%#SpaceVim_statusline_z# '
+    .. vim.o.filetype
 end
 
 ---@return string # return a simple statusline with special name
