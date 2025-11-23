@@ -4,16 +4,16 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Installation](#installation)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Self-Promotion](#self-promotion)
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Self-Promotion](#self-promotion)
 
 <!-- vim-markdown-toc -->
 
 ## Installation
 
-using [nvim-plug](https://github.com/wsdjeg/nvim-plug)
+Using [nvim-plug](https://github.com/wsdjeg/nvim-plug)
 
 ```lua
 require('plug').add({
@@ -21,6 +21,12 @@ require('plug').add({
     'wsdjeg/statusline.nvim',
   },
 })
+```
+
+Using [luarocks](https://luarocks.org/)
+
+```
+luarocks install statusline.nvim
 ```
 
 ## Setup
