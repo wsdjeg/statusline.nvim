@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/wsdjeg/statusline.nvim/compare/v1.0.0...v1.1.0) (2025-12-05)
+
+
+### Features
+
+* support neoment ([f47623c](https://github.com/wsdjeg/statusline.nvim/commit/f47623c69dd3afb0c27e922b84bab253e88744c3))
+
 ## 1.0.0 (2025-11-23)
 
 
