@@ -547,6 +547,31 @@ local special_statusline = {
       return simple_name('Atone tree')
     end
   end,
+  neoment_rooms = function()
+    return simple_name('Matrix rooms')
+  end,
+  neoment_room = function()
+    local room_name = ''
+    if vim.b.room_id then
+      room_name = require('neoment.matrix').get_room_name(vim.b.room_id)
+    end
+    return simple_name(room_name)
+  end,
+  ['neoment_compose.markdown'] = function()
+    return util.build(
+      { winnr(), ' Sent to ' .. require('neoment.matrix').get_room_name(vim.b.room_id) },
+      {},
+      lsep,
+      rsep,
+      '',
+      '',
+      'SpaceVim_statusline_a',
+      'SpaceVim_statusline_b',
+      'SpaceVim_statusline_c',
+      'SpaceVim_statusline_z',
+      vim.fn.winwidth(vim.fn.winnr())
+    )
+  end,
   Fuzzy = function() end, -- todo
   ['git-commit'] = function()
     return simple_name('Git commit')
