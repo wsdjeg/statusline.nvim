@@ -870,7 +870,7 @@ function M.toggle_mode(name)
       table.insert(loaded_modes, name)
     end
   end
-  vim.opt_local.statusline = M.get(1)
+  M.setlocal_statsuline(0, M.get(1))
   if major_mode_cache then
     update_conf()
   end
@@ -911,7 +911,7 @@ function M.toggle_section(name)
       vim.g.spacevim_statusline_left = temp
     end
   end
-  vim.opt_local.statusline = M.get(1)
+  M.setlocal_statsuline(0, M.get(1))
 end
 function M.ctrlp_status(str)
   return util.build(
@@ -1261,7 +1261,7 @@ function M.remove_section(name)
     end
   end
   vim.g.spacevim_statusline_right = right
-  vim.opt_local.statusline = M.get(1)
+  M.setlocal_statsuline(0, M.get(1))
 end
 function M.health()
   return true
@@ -1274,20 +1274,20 @@ function M.setup(opt)
   ilsep = i_separators[config.iseparator][1]
   irsep = i_separators[config.iseparator][2]
   M.def_colors()
-  vim.opt_local.statusline = M.get(1)
+  M.setlocal_statsuline(0, M.get(1))
   local group = vim.api.nvim_create_augroup('spacevim_statusline', { clear = true })
   vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter', 'FileType', 'BufWritePost' }, {
     group = group,
     pattern = { '*' },
     callback = function(_)
-      vim.opt_local.statusline = M.get(1)
+      M.setlocal_statsuline(0, M.get(1))
     end,
   })
   vim.api.nvim_create_autocmd({ 'WinLeave' }, {
     group = group,
     pattern = { '*' },
     callback = function(_)
-      vim.opt_local.statusline = M.get()
+      M.setlocal_statsuline(0, M.get())
     end,
   })
   vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
@@ -1319,6 +1319,13 @@ function M.setup(opt)
     )
   end
   vim.g.tagbar_status_func = TagbarStatusline
+end
+
+function M.setlocal_statsuline(win, value)
+  local win_conf = vim.api.nvim_win_get_config(win)
+  if #win_conf.relative == 0 then
+    vim.opt_local.statusline = value
+  end
 end
 
 function M.rsep()
