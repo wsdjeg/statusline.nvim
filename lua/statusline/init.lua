@@ -676,6 +676,9 @@ local special_statusline = {
   SpaceVimGitRemoteManager = function()
     return simple_name('Remote manager')
   end,
+  ['git-remote'] = function()
+    return simple_name('Remote manager')
+  end,
   SpaceVimPlugManager = function()
     return simple_name('PlugManager')
   end,
