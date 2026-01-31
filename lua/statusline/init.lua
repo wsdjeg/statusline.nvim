@@ -685,6 +685,9 @@ local special_statusline = {
   SpaceVimTabsManager = function()
     return simple_name('TabsManager')
   end,
+  tabman = function()
+    return simple_name('TabsManager')
+  end,
   fzf = function() end, -- todo
   denite = function() end, -- todo
   ['denite-filter'] = function()
