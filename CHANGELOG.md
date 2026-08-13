@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/wsdjeg/statusline.nvim/compare/v1.0.0...v1.1.0) (2026-08-13)
+
+
+### Features
+
+* support git.nvim remote UI ([af9e8e1](https://github.com/wsdjeg/statusline.nvim/commit/af9e8e1f6d7837acd6eb183ab1337079b31d3af6))
+* support neoment ([f47623c](https://github.com/wsdjeg/statusline.nvim/commit/f47623c69dd3afb0c27e922b84bab253e88744c3))
+* support tabman.nvim ([9f48cd3](https://github.com/wsdjeg/statusline.nvim/commit/9f48cd394a0bb361f8a18128d5e31a20ab52ae72))
+
+
+### Bug Fixes
+
+* correct string comparisons and implement empty functions ([ba5d49d](https://github.com/wsdjeg/statusline.nvim/commit/ba5d49d8807d6c84d218fbdd73e0d684fffcc6e1))
+* disable floating statusline ([5e49677](https://github.com/wsdjeg/statusline.nvim/commit/5e496771d8411852f53af6832af88652ea282e28))
+
 ## 1.0.0 (2025-11-23)
 
 
