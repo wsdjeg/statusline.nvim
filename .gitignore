@@ -1,0 +1,14 @@
+# Test dependencies (downloaded by install_deps.lua)
+test/.deps/
+
+# Swap files
+*.swp
+*.swo
+
+# Lua compiled files
+*.luac
+
+# OS generated files
+.DS_Store
+Thumbs.db
+

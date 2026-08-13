@@ -2,6 +2,13 @@
 
 `statusline.nvim` is a simple statusline plugin for neovim.
 
+[![Run Tests](https://github.com/wsdjeg/statusline.nvim/actions/workflows/test.yml/badge.svg)](https://github.com/wsdjeg/statusline.nvim/actions/workflows/test.yml)
+[![GitHub License](https://img.shields.io/github/license/wsdjeg/statusline.nvim)](LICENSE)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/wsdjeg/statusline.nvim)](https://github.com/wsdjeg/statusline.nvim/issues)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wsdjeg/statusline.nvim)](https://github.com/wsdjeg/statusline.nvim/commits/master/)
+[![GitHub Release](https://img.shields.io/github/v/release/wsdjeg/statusline.nvim)](https://github.com/wsdjeg/statusline.nvim/releases)
+[![luarocks](https://img.shields.io/luarocks/v/wsdjeg/statusline.nvim)](https://luarocks.org/modules/wsdjeg/statusline.nvim)
+
 <!-- vim-markdown-toc GFM -->
 
 - [Installation](#installation)
@@ -71,3 +78,4 @@ GitHub.
 Love this plugin? Follow [me](https://wsdjeg.net/) on
 [GitHub](https://github.com/wsdjeg) and
 [Twitter](http://twitter.com/wsdtty).
+
