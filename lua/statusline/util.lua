@@ -1,11 +1,11 @@
 local M = {}
 
 function M.current_time()
-        
+  return vim.fn.strftime('%H:%M')
 end
 
 function M.current_date()
-        
+  return vim.fn.strftime('%Y-%m-%d')
 end
 
 function M.circled_letter(c)

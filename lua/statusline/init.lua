@@ -143,11 +143,16 @@ end
 
 local function battery_status()
   if vim.fn.executable('acpi') == 1 then
+    local output = vim.fn.system('acpi')
+    local battery = vim.fn.matchstr(output, '\\d\\+%,\\s*\\d\\+:\\d\\+:\\d\\+')
+    if battery ~= '' then
+      return ' ' .. battery .. ' '
+    end
+    return ''
   else
     return ''
   end
 end
-
 ---@return string # The buffer name
 local function buffer_name()
   if vim.b._spacevim_statusline_showbfname == 1 or vim.g.spacevim_enable_statusline_bfpath == 1 then
@@ -406,13 +411,13 @@ local function active()
   for _, section in ipairs(config.left_sections) do
     if registed_sections[section] then
       local rst = ''
-      --local ok, _ = pcall(function()
-      if type(registed_sections[section]) == 'function' then
-        rst = registed_sections[section]()
-      elseif type(registed_sections[section]) == 'string' then
-        rst = vim.fn[registed_sections[section]]()
-      end
-      -- end)
+      local ok = pcall(function()
+        if type(registed_sections[section]) == 'function' then
+          rst = registed_sections[section]()
+        elseif type(registed_sections[section]) == 'string' then
+          rst = vim.fn[registed_sections[section]]()
+        end
+      end)
       if not ok then
       end
       table.insert(lsec, rst)
@@ -907,7 +912,7 @@ function M.toggle_section(name)
     table.remove(temp, index(temp, name))
     vim.g.spacevim_statusline_left = temp
   elseif section_old_pos[name] then
-    if section_old_pos[name][1] == #'r' then
+    if section_old_pos[name][1] == 'r' then
       local temp = vim.g.spacevim_statusline_right
       table.insert(temp, section_old_pos[name][2], name)
       vim.g.spacevim_statusline_right = temp
@@ -1085,10 +1090,10 @@ function M.mode(mode)
     elseif
       mode == 'v'
       or mode == 'V'
-      or mode == #''
+      or mode == ''
       or mode == 's'
       or mode == 'S'
-      or mode == #''
+      or mode == ''
     then
       vim.api.nvim_set_hl(0, 'SpaceVim_statusline_a', {
         bold = true,
